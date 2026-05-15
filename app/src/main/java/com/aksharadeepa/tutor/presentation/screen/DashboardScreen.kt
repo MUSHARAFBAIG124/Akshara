@@ -441,7 +441,7 @@ private fun ChapterRow(
                 Button(onClick = { onStartQuiz(subjectId, chapter.id, chapter.title) }) {
                     Icon(Icons.Default.PlayArrow, contentDescription = null)
                     Spacer(Modifier.size(6.dp))
-                    Text("5-question quiz")
+                    Text("Self-check quiz")
                 }
                 OutlinedButton(onClick = { openLessonPdf(context, chapter.id, chapter.title) }) {
                     Icon(Icons.AutoMirrored.Filled.MenuBook, contentDescription = null)

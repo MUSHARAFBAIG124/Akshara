@@ -190,15 +190,30 @@ private fun ReviewContent(
     onBack: () -> Unit,
     modifier: Modifier = Modifier
 ) {
+    val percentage = if (state.totalQuestions == 0) 0 else state.score * 100 / state.totalQuestions
+    val resultLabel = when {
+        percentage >= 80 -> "Excellent"
+        percentage >= 60 -> "Good"
+        percentage >= 40 -> "Needs practice"
+        else -> "Revise and retry"
+    }
+
     LazyColumn(
         modifier = modifier.fillMaxSize().padding(16.dp),
         verticalArrangement = Arrangement.spacedBy(12.dp)
     ) {
         item {
             ElevatedCard(colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.tertiaryContainer)) {
-                Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
-                    Text("Review Answer", style = MaterialTheme.typography.titleLarge, fontWeight = FontWeight.Bold)
-                    Text("Score: ${state.score}/${state.totalQuestions} (${state.score * 100 / state.totalQuestions}%)")
+                Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
+                    Text("Quiz Summary", style = MaterialTheme.typography.titleLarge, fontWeight = FontWeight.Bold)
+                    Text(state.chapterTitle, style = MaterialTheme.typography.titleMedium)
+                    Text(
+                        text = "$resultLabel - $percentage%",
+                        style = MaterialTheme.typography.headlineSmall,
+                        fontWeight = FontWeight.Bold
+                    )
+                    Text("Score: ${state.score}/${state.totalQuestions} correct")
+                    Text("Answered: ${state.selectedAnswers.size}/${state.totalQuestions}")
                     Text("Strength Map updates from this score automatically.")
                 }
             }
