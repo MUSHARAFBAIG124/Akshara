@@ -423,7 +423,7 @@ private fun ChapterRow(
                 Column(Modifier.weight(1f)) {
                     Text(chapter.title, maxLines = 2, overflow = TextOverflow.Ellipsis, fontWeight = FontWeight.Medium)
                     Text(
-                        text = "Latest quiz: ${chapter.latestQuizScore?.toInt()?.toString() ?: "not taken"}%",
+                        text = chapter.latestQuizScore?.let { "Latest quiz: ${it.toInt()}%" } ?: "Latest quiz: Not taken",
                         style = MaterialTheme.typography.bodySmall
                     )
                 }

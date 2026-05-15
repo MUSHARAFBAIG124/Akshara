@@ -202,7 +202,7 @@ private fun ChapterRow(
                         fontWeight = FontWeight.Medium
                     )
                     Text(
-                        text = "Latest quiz: ${chapter.latestQuizScore?.toInt()?.toString() ?: "not taken"}%",
+                        text = chapter.latestQuizScore?.let { "Latest quiz: ${it.toInt()}%" } ?: "Latest quiz: Not taken",
                         style = MaterialTheme.typography.bodySmall,
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
